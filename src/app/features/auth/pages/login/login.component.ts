@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
-// Angular Material
+import { AuthService } from '../../../../core/services/auth.service';
+// Material
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,10 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
   imports: [
-    CommonModule,               // 👈 *ngIf
+    CommonModule,
     ReactiveFormsModule,
-
-    // Material
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -26,25 +26,40 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatProgressSpinnerModule
   ]
 })
+
 export class LoginComponent {
   loading = false;
-  form: FormGroup;
+  form!: FormGroup;
+  errorMessage: string | null = null
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
-  submit(): void {
-    if (this.form.invalid) return;
+  submit() {
+    if (this.form.invalid) {
+      this.errorMessage = 'Formulario inválido';
+      return;
+    }
 
     this.loading = true;
-    console.log(this.form.value);
+    this.errorMessage = null;
 
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
+    this.authService.login(this.form.value).subscribe({
+      next: () => {
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        this.errorMessage = err?.error?.message || 'Error al iniciar sesión';
+        this.loading = false;
+      }
+    });
   }
 }

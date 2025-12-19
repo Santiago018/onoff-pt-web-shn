@@ -33,3 +33,12 @@ body {
   // Reset the user agent margin.
   margin: 0;
 }
+
+.cdk-overlay-pane .estado-panel {
+  transform-origin: top left !important;
+}
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+}
