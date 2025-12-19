@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
 
         this.tasksService.getAll(completed).subscribe(tasks => {
         this.tareas = tasks;
-        this.dataSource.data = tasks;   // 🔥 ESTA LÍNEA ES LA CLAVE
+        this.dataSource.data = tasks;
         this.calcularMetricas();
         });
     }
