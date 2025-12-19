@@ -110,3 +110,73 @@ button[mat-icon-button] {
 .btn-logout:hover {
   color: #c62828;
 }
+
+.snackbar-success {
+  background: #2e7d32;
+  color: #fff;
+  font-weight: 500;
+}
+
+.snackbar-error {
+  background: #c62828;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* CONTENEDOR */
+.metrics-row {
+  display: flex;
+  justify-content: center;   // 🔥 CENTRA TODO
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* TARJETA */
+.metric-card {
+  width: 140px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;    // 🔥 ICONO ARRIBA
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ICONO */
+.metric-card mat-icon {
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+
+/* NUMERO */
+.metric-number {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* TEXTO */
+.metric-label {
+  font-size: 12px;
+  color: #666;
+}
+
+/* COLORES */
+.metric-card.total {
+  color: #2e7d32;
+}
+
+.metric-card.completed {
+  color: #1b5e20;
+}
+
+.metric-card.pending {
+  color: #616161;
+}

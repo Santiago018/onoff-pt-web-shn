@@ -109,3 +109,24 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </mat-card>
+
+<!-- MÉTRICAS -->
+<div class="metrics-row">
+  <mat-card class="metric-card total">
+    <mat-icon>assignment</mat-icon>
+    <span class="metric-number">{{ totalTareas }}</span>
+    <span class="metric-label">Total</span>
+  </mat-card>
+
+  <mat-card class="metric-card completed">
+    <mat-icon>check_circle</mat-icon>
+    <span class="metric-number">{{ tareasCompletadas }}</span>
+    <span class="metric-label">Completadas</span>
+  </mat-card>
+
+  <mat-card class="metric-card pending">
+    <mat-icon>hourglass_empty</mat-icon>
+    <span class="metric-number">{{ tareasPendientes }}</span>
+    <span class="metric-label">Pendientes</span>
+  </mat-card>
+</div>
